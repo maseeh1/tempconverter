@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+input {
+    width: 95%;
+    padding: 12px 20px;
+    margin: 6px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: #3CBC8D;
+    color: white;
+    font-size: 16px;
+}
+::placeholder { 
+    color: white;
+    opacity: 1; 
+}
+.mydiv {
+    width: 33%;
+    float: left;
+    padding: 0px;
+}
+@media only screen and (max-width: 768px) {
+    .mydiv {
+        width: 100%;
+    }
+    input {
+        width: 100%;
+    }
+}
+    </style>    
+</head>
+<body>
+        <div class="mydiv">
+            &nbsp; Celsius: <br>
+                <input id="outputCelsius" placeholder="°C" onchange="convertFromCelsius(this.value)" oninput="convertFromCelsius(this.value)">
+        </div>
+        <div class="mydiv">
+            &nbsp; Fahrenheit: <br>
+            <input id="outputForen" placeholder="°F" onchange="convertFromForen(this.value)" oninput="convertFromForen(this.value)">
+        </div>
+        <div class="mydiv">
+            &nbsp; Kelvin: <br>
+            <input id="outputKelvin" placeholder="K" onchange="convertFromKelvin(this.value)" oninput="convertFromKelvin(this.value)">
+        </div>  
+    
+    <script>
+        function convertFromCelsius(valNum) {
+        valNum = parseFloat(valNum);
+        document.getElementById("outputForen").value = ((valNum * 1.8) + 32).toFixed(2);
+        document.getElementById("outputKelvin").value = (valNum + 273.15).toFixed(2);
+        }
+        function convertFromForen(valNum) {
+        valNum = parseFloat(valNum);
+        document.getElementById("outputCelsius").value = ((valNum - 32) / 1.8).toFixed(2);
+        document.getElementById("outputKelvin").value = (((valNum - 32) / 1.8) + 273.15).toFixed(2);
+        }
+        function convertFromKelvin(valNum) {
+        valNum = parseFloat(valNum);
+        document.getElementById("outputCelsius").value = (valNum - 273.15).toFixed(2);
+        document.getElementById("outputForen").value = (((valNum - 273.15) * 1.8) + 32).toFixed(2);
+        }
+    </script>
+</body>
+</html>
